@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PosMvcFinal.Models.BoughtItem>
+
+@{
+    ViewBag.Title = "Buy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>You buy this item:</h2>
+
+<div>
+    <table id="t01">
+        <thead>
+
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+
+        </thead>
+        @foreach (var item in Model)
+        {
+            if (item.UserId == ViewBag.customer)
+            {
+                <tr>
+                    <td>
+                        @item.Item.Name
+                    </td>
+                    <td>
+                        @item.Item.Price
+                    </td>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>
+                        @item.TotalPrice
+                    </td>>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCustomerItem", new { itemId = item.Id })
+                        @Html.ActionLink("Delete", "DeleteCustomerItem", new { itemId = item.Id })
+                    </td>
+                </tr>
+            }
+
+
+        }
+
+    </table>
+</div>
+
+<br />
+@Html.ActionLink("Go Back", "ShowItemForCustomer", "Pos")
+
+
+<style>
+    table#t01 {
+        width: 100%;
+        background-color: #f1f1c1;
+    }
+
+        table#t01 tr:nth-child(even) {
+            background-color: #a7aaaf;
+        }
+
+        table#t01 tr:nth-child(odd) {
+            background-color: #dce0e8;
+        }
+
+        table#t01 th {
+            color: white;
+            background-color: #8342f4;
+        }
+
+    table, th, td {
+        border: 1px solid #41f45c;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 15px;
+    }
+</style>

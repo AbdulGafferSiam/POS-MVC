@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PosMvcFinal.Models.Item>
+    @{
+        ViewBag.Title = "ShowItemForCustomer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>ShowItemForCustomer</h2>
+
+    @if (Model.Count() == 0)
+    {
+        <p>No item available</p>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="table-bordered">
+                <div class="text-center">
+                    <p><b>@item.Name</b></p>
+                </div>
+                <div class="text-center">
+                    <p>@item.Price</p>
+                </div>
+                <div class="btnx btn-primary">
+                    @using (@Html.BeginForm("BuyItem", "Pos", new { id = @item.Id }))
+                    {
+                        <button type="submit" class="btn-primary">Buy</button>
+                    }
+                </div>
+
+            </div>
+
+        }
+
+
+    }
+    <br/>
+    @Html.ActionLink("Go Back", "Index", "Pos")
+
+
+    <style>
+        .table-bordered {
+            background-color: darkgrey;
+            width: 15%;
+            border-bottom-color: darkmagenta;
+            display: inline-block;
+            border-color: red;
+        }
+
+        .btnx {
+            border-color: blue;
+            display: inline;
+            text-align: center;
+            background-color: #d2d2d2;
+        }
+    </style>

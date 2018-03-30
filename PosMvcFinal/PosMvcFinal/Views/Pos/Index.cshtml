@@ -1,0 +1,16 @@
+﻿@model PosMvcFinal.Models.Admin
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Point Of Sale</h2>
+
+@using (@Html.BeginForm("AdminLogInPanel", "Pos"))
+{
+    <button type="submit" class="btn btn-primary">Admin</button>
+}
+@using (@Html.BeginForm("Customer", "Pos"))
+{
+    <button type="submit" class="btn btn-primary">Customer</button>
+}
